@@ -1,0 +1,224 @@
+Host ural
+    hostname 192.168.16.128
+    user ural
+    port 9669
+Host erhan
+    hostname 192.168.16.26
+    user erhan
+    port 8374
+Host gurcan
+    hostname 192.168.16.212
+    user gurcan
+    port 22
+Host murat
+    hostname 192.168.16.151
+    user muratk
+    port 22
+Host peppara_monsrv
+    hostname 94.103.44.188
+    user root
+    port 22
+Host pepcard_monsrv
+    hostname 94.103.44.189
+    user root
+    port 22
+Host kalemzen
+    hostname 94.103.47.9
+    user root
+    port 22
+Host alpozler_mail
+    hostname 94.103.43.206
+    user root
+    port 22
+Host kilavuz
+    hostname 94.103.47.34
+    user root
+    port 22
+Host target_mail
+    hostname 94.103.38.18
+    user root
+    port 22
+Host linuxsanal
+    hostname 94.103.32.16
+    user root
+    port 22
+Host cagkan
+    hostname 192.168.16.90
+    user root
+    port 22
+Host ankarahosting
+    hostname 94.103.35.34
+    user root
+    port 3322
+Host vt_mx1_eposta
+    hostname 94.103.32.132
+    user root
+    port 22
+Host v8craft
+    hostname 94.103.43.67
+    user root
+    port 8375
+Host mail_kilavuzbilgisayar
+    hostname 94.103.47.34
+    user root
+    port 22
+Host mail_baskenttasarim
+    hostname 94.103.47.79
+    user root
+    port 22
+Host vt_nagios
+    hostname 192.168.16.215
+    user root
+    port 22
+Host valor_zimbra
+    hostname 94.103.43.100
+    user root
+    port 22
+Host tdb
+    hostname 94.103.35.178
+    user root
+    port 22
+Host yarinlar
+    hostname 94.103.47.122
+    user root
+    port 22
+Host muratakgun
+    hostname 94.103.41.203
+    user root
+    port 22
+Host voleybol
+    hostname 94.103.35.211
+    user root
+    port 22
+Host tvf_fikstur
+    hostname 94.103.35.213
+    user root
+    port 22
+Host unluoto
+    hostname 94.103.43.115
+    user root
+    port 22
+Host vtbackup
+    hostname 192.168.16.100
+    user root
+    port 22
+Host infoteks_ankara_prod
+    hostname 185.35.23.5
+    user root
+    port 700
+Host isprocp
+    hostname 87.251.0.17
+    user root
+    port 22
+Host plesk
+    hostname 94.103.32.11
+    user root
+    port 8374
+Host target_plesk
+    hostname 94.103.38.19
+    user root
+    port 8374
+Host targetweb
+    hostname 94.103.47.7
+    user root
+    port 22
+Host sanpark
+    hostname 94.103.47.114
+    user veriteknik
+    port 989
+Host vt_ns
+    hostname 94.103.32.130
+    user root
+    port 8374
+Host gezenbilir
+    hostname 94.103.35.66
+    user root
+    port 22
+Host yonca
+    hostname 94.103.35.174
+    user root
+    port 22
+Host sabagrup
+    hostname 94.103.35.86
+    user root
+    port 2222
+Host piritekno
+    hostname 94.103.41.246
+    user serdarzor
+    port 22
+Host tvf
+    hostname 94.103.35.211
+    user root
+    port 22
+Host limooncentos
+    hostname 94.103.47.66
+    user root
+    port 22
+Host seviyezimbra
+    hostname 94.103.35.20
+    user root
+    port 22
+Host bbiledegil
+    hostname 94.103.47.76
+    user root
+    port 22
+Host infoteks_da
+    hostname 94.103.35.162
+    user root
+    port 22
+Host ismayil
+    hostname 192.168.16.172
+    user mmd
+    port 22
+Host agrali
+    hostname 94.103.47.42
+    user root
+    port 22
+Host globya
+    hostname 94.103.42.178
+    user root
+    port 56600
+Host veritekniknet
+    hostname 94.103.32.32
+    user root
+    port 8374
+Host baskenttasarim
+    hostname 94.103.41.111
+    user root
+    port 22
+Host abp
+    hostname 94.103.47.85
+    user root
+    port 22
+Host ural
+    hostname 192.168.16.128
+    user ural
+    port 9669
+Host berk
+    hostname 192.168.16.171
+    user berk
+    port 22
+Host infoteks_corona
+    hostname 185.35.23.38
+    user root
+    port 22
+Host urbackup
+    hostname 192.168.16.210
+    user root
+    port 22
+Host vt_cacti
+    hostname 94.103.32.99
+    user root
+    port 8374
+Host ankara.sanallastirma.com
+    hostname 94.103.32.15
+    user root
+    port 8374
+Host whmcs_pcilabs
+    hostname 94.103.36.182
+    user root
+    port 22
+Host engin
+    hostname 192.168.16.26
+    user engin
+    port 22
