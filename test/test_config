@@ -1,0 +1,4 @@
+Host ural
+    user ural
+    port 9669
+    hostname 192.168.16.128

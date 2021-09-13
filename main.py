@@ -2,17 +2,23 @@ import os
 import pysftp
 
 
-class Hosts:
+class Host:
     def __init__(self, host, hostname, user, port):
         self.host = host
         self.hostname = hostname
         self.user = user
         self.port = port
 
+    def to_string(self):
+        return self.host + self.hostname + self.user + self.port
 
-def open_file(file='storm_list_main'):
+
+def read_lines(file='storm_list_main'):
     with open(file) as file_lines:
         all_lines = file_lines.readlines()
+    for line in all_lines:
+        if line == '\n ':
+            all_lines.remove(line)
     return all_lines
 
 
@@ -24,7 +30,7 @@ def write_to_file(to_write, file='storm_list_main'):
 
 
 def read_hosts_file(file='hosts'):
-    return get_host_credentials(open_file(file))
+    return get_host_credentials(read_lines(file))
 
 
 def get_host_credentials(host_file):
@@ -43,9 +49,10 @@ def format_string(string):
     return mod_string
 
 
-def get_storm_list(ip, uname, pwd):
-    path_to_file = '/home/' + uname + '/.ssh'
-    with pysftp.Connection(host=ip, username=uname, password=pwd) as sftp:
+def get_config_file(hostname, username, password):
+    private_key_path = "/home/mmd/.ssh/id_rsa"
+    path_to_file = '/home/' + username + '/.ssh'
+    with pysftp.Connection(hostname, username=username, private_key=private_key_path, private_key_pass='Mmd.123!') as sftp:
         with sftp.cd(path_to_file):
             sftp.get('config')
     sftp.close()
@@ -53,49 +60,46 @@ def get_storm_list(ip, uname, pwd):
 
 def store_file(conf_file='config'):
     config = []
-    config_file = open_file(conf_file)
+    config_file = read_lines(conf_file)
     for i in range(0, len(config_file), 4):
         host = config_file[i]
         hostname = config_file[i+1]
         user = config_file[i+2]
         port = config_file[i+3]
-        config.append(Hosts(host, hostname, user, port))
+        config.append(Host(host, hostname, user, port))
     return config
 
 
 def get_unique_instances(config, main_storm_list):
     for line in config:
-        if line_in_file(line.hostname, main_storm_list) is False:
+        if hostname_in_file(line.hostname, main_storm_list) is False:
             main_storm_list.append(line)
     return main_storm_list
 
 
-def line_in_file(auth_key_line, main_file):
-    check = False
+def hostname_in_file(auth_key_line, main_file):
     for line in main_file:
         if line.hostname == auth_key_line:
-            check = True
-    return check
+            return True
+    return False
 
 
-def fill_main_storm_list(main_storm_list):
-    for line in main_storm_list:
-        write_to_file(line.host)
-        write_to_file(line.hostname)
-        write_to_file(line.user)
-        write_to_file(line.port)
+def sync_main_storm_file(main_storm_list, file='storm_list_main'):
+    config = ''
+    for host in main_storm_list:
+        config += host.to_string()
+    write_to_file(config, file)
 
 
 def main():
-    main_storm_list = store_file(conf_file='storm_list_main')
-    hosts = []
-    config = []
+    main_storm_list = store_file('storm_list_main')
+    hosts, config = [], []
     hosts = read_hosts_file()
     for host in hosts:
-        #get_storm_list(host[0], host[1], host[2])
-        config = store_file()
+        get_config_file(host[0], host[1], host[2])
+        config = store_file('config')
         main_storm_list = get_unique_instances(config, main_storm_list)
-    fill_main_storm_list(main_storm_list)
+    sync_main_storm_file(main_storm_list)
 
 
 if __name__ == '__main__':
