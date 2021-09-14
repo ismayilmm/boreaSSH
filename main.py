@@ -2,6 +2,8 @@ import os
 import pysftp
 import shutil
 
+private_key_path = "/home/mmd/.ssh/id_rsa"
+private_key_pass = "Mmd.123!"
 
 class Host:
     def __init__(self, host, hostname, user, port):
@@ -66,9 +68,13 @@ def write_to_file(to_write, file='storm_list_main'):
 
 
 def get_config_file(hostname, username):
-    private_key_path = "/home/mmd/.ssh/id_rsa"
+    cnopts = pysftp.CnOpts()
+    cnopts.hostkeys = None
     path_to_file = '/home/' + username + '/.ssh'
-    with pysftp.Connection(hostname, username=username, private_key=private_key_path, private_key_pass='Mmd.123!') as sftp:
+    port_no = 22
+    if username == 'ural':
+        port_no = 9669
+    with pysftp.Connection(hostname, username=username, private_key=private_key_path, private_key_pass=private_key_pass, port=port_no, cnopts=cnopts) as sftp:
         with sftp.cd(path_to_file):
             sftp.get('config')
     sftp.close()
@@ -76,14 +82,14 @@ def get_config_file(hostname, username):
 
 def get_unique_instances(config, main_storm_list):
     for line in config:
-        if hostname_in_file(line.hostname, main_storm_list) is False:
+        if hostname_in_file(line.hostname, line.port, main_storm_list) is False:
             main_storm_list.append(line)
     return main_storm_list
 
 
-def hostname_in_file(auth_key_line, main_file):
+def hostname_in_file(auth_key_host, auth_key_port, main_file):
     for line in main_file:
-        if line.hostname == auth_key_line:
+        if line.hostname == auth_key_host and line.port == auth_key_port:
             return True
     return False
 
@@ -101,9 +107,13 @@ def create_uploadable_file(old_name='storm_list_main', new_name='config'):
 
 
 def upload_config_file(ip, uname):
-    private_key_path = "/home/mmd/.ssh/id_rsa"
+    cnopts = pysftp.CnOpts()
+    cnopts.hostkeys = None
     path_to_file = '/home/' + uname + '/.ssh'
-    with pysftp.Connection(host=ip, username=uname, private_key=private_key_path, private_key_pass='Mmd.123!') as sftp:
+    port_no = 22
+    if uname == 'ural':
+        port_no = 9669
+    with pysftp.Connection(host=ip, username=uname, private_key=private_key_path, private_key_pass=private_key_pass, port=port_no, cnopts=cnopts) as sftp:
         with sftp.cd(path_to_file):
             sftp.put('config')
     sftp.close()
@@ -121,6 +131,7 @@ def main():
     for host in hosts:
         get_config_file(host[0], host[1])
         config = store_file('config')
+        config.reverse()
         main_storm_list = get_unique_instances(config, main_storm_list)
     sync_main_storm_file(main_storm_list)
     create_uploadable_file()
