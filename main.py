@@ -23,7 +23,7 @@ def read_lines(file='storm_list_main'):
 
 
 def write_to_file(to_write, file='storm_list_main'):
-    main_file = open(file, 'a')
+    main_file = open(file, 'w   ')
     for line in to_write:
         main_file.write(line)
     main_file.close()
@@ -37,7 +37,6 @@ def get_host_credentials(host_file):
     hosts = []
     for i, line in enumerate(host_file):
         split_by_space = line.split(' ')
-
         pwd = format_string(split_by_space[2])
         hosts.append((split_by_space[0], split_by_space[1], pwd))
     return hosts
@@ -61,12 +60,16 @@ def get_config_file(hostname, username, password):
 def store_file(conf_file='config'):
     config = []
     config_file = read_lines(conf_file)
-    for i in range(0, len(config_file), 4):
-        host = config_file[i]
-        hostname = config_file[i+1]
-        user = config_file[i+2]
-        port = config_file[i+3]
-        config.append(Host(host, hostname, user, port))
+    for i, line in enumerate(config_file):
+        if 'Host' in line:
+            host = line
+        elif 'hostname' in line:
+            hostname = line
+        elif 'user' in line:
+            user = line
+        elif 'port' in line:
+            port = line
+            config.append(Host(host, hostname, user, port))
     return config
 
 
