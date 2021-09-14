@@ -26,14 +26,6 @@ Host infoteks_ankara_backup
     hostname 185.35.23.5
     user tunc
     port 704
-Host infoteks_ankara_db
-    hostname 185.35.23.5
-    user root
-    port 703
-Host infoteks_ankara_dev
-    hostname 185.35.23.5
-    user root
-    port 702
 Host infoteks_ankara_eimza
     hostname 185.35.23.11
     user root
@@ -42,22 +34,6 @@ Host infoteks_ankara_fortigate
     hostname 192.168.16.95
     user tunc
     port 22
-Host infoteks_ankara_kvm
-    hostname 185.35.23.5
-    user tunc
-    port 699
-Host infoteks_ankara_log
-    hostname 185.35.23.5
-    user root
-    port 705
-Host infoteks_ankara_prod
-    hostname 185.35.23.5
-    user root
-    port 700
-Host infoteks_ankara_prod2
-    hostname 185.35.23.5
-    user root
-    port 701
 Host infoteks_bulut
     hostname 94.103.47.50
     user root
@@ -138,82 +114,18 @@ Host mikrosaray_carpark_kvm2_ankara
     hostname 94.103.36.163
     user root
     port 22
-Host mikrosaray_tsm_gmp
-    hostname 94.103.41.146
-    user root
-    port 8010
-Host mikrosaray_tsm_update
-    hostname 94.103.41.146
-    user root
-    port 8011
-Host mikrosaray_yntp
-    hostname 94.103.41.146
-    user root
-    port 8100
-Host mikrosaray_dns1
-    hostname 94.103.41.146
-    user root
-    port 8012
-Host mikrosaray_tsm_db
-    hostname 94.103.41.146
-    user root
-    port 8015
-Host mikrosaray_tsm_dev
-    hostname 94.103.41.146
-    user root
-    port 8016
-Host mikrosaray_tsm_log
-    hostname 94.103.41.146
-    user root
-    port 8101
-Host mikrosaray_tsm_update_nossl
-    hostname 94.103.41.146
-    user root
-    port 8104
-Host mikrosaray_tsm_update3
-    hostname 94.103.41.146
-    user root
-    port 8021
 Host mikrosaray_tsm_izmir_gmp2
     hostname 31.145.71.156
     user root
     port 22
-Host mikrosaray_tsm_izmir_update
-    hostname 31.145.71.156
-    user root
-    port 2222
 Host mikrosaray_tsm_istanbul_log
     hostname 31.145.28.93
     user root
     port 2222
-Host mikrosaray_tsm_gmp_vmware
-    hostname 94.103.41.146
-    user tsm
-    port 5422
-Host mikrosaray_backuppc
-    hostname 94.103.41.146
-    user root
-    port 8105
-Host mikrosaray_backuppctest
-    hostname 94.103.41.146
-    user root
-    port 8107
 Host mikrosaray_tsm_kvm_bursa
     hostname 185.96.170.71
     user root
     port 8014
-Host mikrosaray_nagios
-    hostname 94.103.41.146
-    user root
-    port 8111
-Host mikrosaray_tsm_earsiv
-    hostname 94.103.41.146
-    user root
-    port 8023
-Host mikrosaray_tsm_proxmox
-    hostname 94.103.41.146
-    user root
-    port 8007
 Host mikrosaray_tsm_monitoring_webservice
     hostname 94.103.47.32
     user root
@@ -282,10 +194,6 @@ Host onsistem_owncloud
     hostname 94.103.37.226
     user root
     port 22
-Host vt_backup
-    hostname 192.168.16.100
-    user root
-    port 22
 Host infoteks_da
     hostname 94.103.35.162
     user root
@@ -314,10 +222,6 @@ Host emre
     hostname 192.168.16.153
     user emre
     port 22
-Host vega_backupnakivo
-    hostname 94.103.44.77
-    user root
-    port 3169
 Host cagkan
     hostname 192.168.16.90
     user cagkan
@@ -332,10 +236,6 @@ Host amsterdam.sanallastirma
     port 8374
 Host pepcard_monsrv
     hostname 94.103.44.189
-    user root
-    port 22
-Host engtest
-    hostname 94.103.47.8
     user root
     port 22
 Host onsistem_backuppc
@@ -362,14 +262,6 @@ Host tdb_yeni
     hostname 94.103.33.136
     user root
     port 22
-Host mikrosaray_update_bursa
-    hostname 185.96.170.71
-    user root
-    port 8376
-Host infoteks_ankara_backup_root
-    hostname 185.35.23.5
-    user root
-    port 704
 Host paladyum_logsign
     hostname 94.103.44.178
     user iadmin
@@ -378,14 +270,6 @@ Host infoteks_ws_yemekmatik
     hostname 185.35.23.23
     user root
     port 22
-Host mikrosaray_temp_ntp
-    hostname 94.103.41.146
-    user root
-    port 8222
-Host infoteks_db
-    hostname 185.35.23.5
-    user tunc
-    port 703
 Host agrali
     hostname 94.103.47.42
     user root
@@ -438,36 +322,12 @@ Host infoteks_ubuntu
     hostname 94.103.47.37
     user root
     port 22
-Host muratakgun_sinavbul2
-    hostname 94.103.41.210
-    user root
-    port 22
 Host tvf_fikstur
     hostname 94.103.35.213
     user root
     port 22
-Host vt_solus_chief
-    hostname 94.103.41.26
-    user root
-    port 22
-Host vt_solus_newera
-    hostname 94.103.41.25
-    user root
-    port 22
-Host mikrosaray_tsmgmp2
-    hostname 94.103.41.146
-    user root
-    port 8020
-Host mikrosaray_tsmgmptk1v5
-    hostname 94.103.41.146
-    user root
-    port 8103
 Host tvf_cloud
     hostname 94.103.35.195
-    user root
-    port 22
-Host tvf_mail
-    hostname 94.103.35.211
     user root
     port 22
 Host vt_monument
@@ -494,14 +354,6 @@ Host ispro_mail
     hostname 87.251.0.19
     user root
     port 22
-Host mikrosaray_tsmgmptk1v5_2
-    hostname 94.103.41.146
-    user root
-    port 8131
-Host mikrosaray_tsmgmptk1v5_dev
-    hostname 94.103.41.146
-    user root
-    port 8130
 Host altair_ankara_webtest
     hostname 185.35.23.90
     user root
@@ -518,10 +370,6 @@ Host vt_sanallastirma
     hostname 94.103.32.98
     user root
     port 22
-Host mikrosaray_vmware_erp
-    hostname 94.103.41.146
-    user root
-    port 8301
 Host ozlemseyahat
     hostname 94.103.43.52
     user root
@@ -546,14 +394,6 @@ Host altair_ankara_db
     hostname 185.35.23.85
     user root
     port 22
-Host mikrosaray_tsm_db_drc
-    hostname 185.96.170.71
-    user root
-    port 8015
-Host mikrosaray_pgpooltest_ankara2
-    hostname 94.103.41.146
-    user root
-    port 1811
 Host ispro_04
     hostname 185.35.22.53
     user root
@@ -602,10 +442,6 @@ Host vt_urback
     hostname 192.168.16.208
     user root
     port 8374
-Host garahost
-    hostname 94.103.47.16
-    user root
-    port 432
 Host ttb_centosvm
     hostname 185.35.22.70
     user root
@@ -614,10 +450,6 @@ Host vt_nfsen
     hostname 192.168.16.213
     user root
     port 22
-Host ttb
-    hostname 185.35.22.70
-    user root
-    port 35222
 Host ttb_yeni
     hostname 185.35.22.67
     user root
@@ -630,10 +462,6 @@ Host rentacara_proxmox
     hostname 94.103.34.132
     user root
     port 22
-Host luxor
-    hostname 185.203.33.88
-    user root
-    port 8358
 Host kodplus_centos
     hostname 94.103.34.101
     user root
@@ -650,14 +478,6 @@ Host securit.pmxprod
     hostname 94.103.44.148
     user root
     port 22
-Host securit.pmxbackup
-    hostname 94.103.44.149
-    user root
-    port 48224
-Host securit.pmxprod.eg
-    hostname 94.103.44.149
-    user egunay
-    port 48223
 Host tdb_proxmox
     hostname 94.103.35.182
     user root
@@ -692,10 +512,6 @@ Host altair_ankara_dbtemp2
     port 22
 Host altair_ankara_ftp
     hostname 185.35.23.94
-    user root
-    port 22
-Host altair_ankara_hsm
-    hostname 185.35.23.89
     user root
     port 22
 Host altair_ankara_pgp
@@ -754,10 +570,6 @@ Host trpos_log
     hostname 94.103.36.243
     user root
     port 8374
-Host engin_trposlog
-    hostname 94.103.36.243
-    user engin
-    port 8374
 Host altair_ankara_log
     hostname 185.35.23.88
     user root
@@ -806,10 +618,6 @@ Host vt_ansible
     hostname ansible.veritech.net
     user root
     port 22
-Host altair_ankara_nagios
-    hostname 185.35.23.88
-    user root
-    port 33333
 Host abp_cpanel
     hostname 94.103.47.85
     user root
@@ -818,27 +626,83 @@ Host ankara.sanallastirma
     hostname 94.103.32.15
     user root
     port 8374
-Host kitchen
-    hostname 192.168.16.215
-    user egunay
-    port 22
-Host github.com
-    hostname github.com
-    user gunue
-    identityfile ~/.ssh/id_rsa.pub
 Host rentacara_psql
     hostname 94.103.34.130
     user root
     port 2290
-Host rentacara_pmx
-    hostname 94.103.34.132
-    user root
-    port 22
 Host vt_gurcan
     hostname 192.168.16.212
     user gurcan
     port 22
 Host pcilabs_ansibleserver
     hostname 10.110.0.10
+    user root
+    port 22
+Host murat
+    hostname 192.168.16.151
+    user muratk
+    port 22
+Host target_mail
+    hostname 94.103.38.18
+    user root
+    port 22
+Host unluoto
+    hostname 94.103.43.115
+    user root
+    port 22
+Host targetweb
+    hostname 94.103.47.7
+    user root
+    port 22
+Host sanpark
+    hostname 94.103.47.114
+    user veriteknik
+    port 989
+Host yonca
+    hostname 94.103.35.174
+    user root
+    port 22
+Host piritekno
+    hostname 94.103.41.246
+    user serdarzor
+    port 22
+Host ismayil
+    hostname 192.168.16.172
+    user mmd
+    port 22
+Host globya
+    hostname 94.103.42.178
+    user root
+    port 56600
+Host veritekniknet
+    hostname 94.103.32.32
+    user root
+    port 8374
+Host whmcs_pcilabs
+    hostname 94.103.36.182
+    user root
+    port 22
+Host infoteks_ws_yemekmatik
+    hostname 94.103.47.107
+    user root
+    port 22
+Host bursa.sanallastirma
+    hostname 185.96.170.211
+    user root
+    port 8374
+Host ispro_barter
+    hostname 94.103.41.138
+    user root
+    port 22
+Host managerackdc
+    hostname 94.103.32.114
+    user root
+    port 8374
+Host ns2.rackdc.com
+    hostname 185.96.170.212
+    user root
+    port 8374
+Host ansible_test
+    hostname 94.103.46.185
     user root
     port 22
