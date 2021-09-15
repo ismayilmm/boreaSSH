@@ -1,9 +1,21 @@
 import os
 import pysftp
 import shutil
+import argparse
 
-private_key_path = "/home/mmd/.ssh/id_rsa"
-private_key_pass = "Mmd.123!"
+
+def private_key_credentials():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("private_key_path", type=str)
+    parser.add_argument("private_key_pass", type=str)
+    args = parser.parse_args()
+    print('Args: ' + str(args))
+    private_key_path = args.private_key_path
+    private_key_pass = args.private_key_pass
+    print(private_key_path)
+    print(private_key_pass)
+    return private_key_path, private_key_pass
+
 
 class Host:
     def __init__(self, host, hostname, user, port):
@@ -67,7 +79,7 @@ def write_to_file(to_write, file='storm_list_main'):
     main_file.close()
 
 
-def get_config_file(hostname, username):
+def get_config_file(hostname, username, private_key_path, private_key_pass):
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
     path_to_file = '/home/' + username + '/.ssh'
@@ -106,7 +118,7 @@ def create_uploadable_file(old_name='storm_list_main', new_name='config'):
     shutil.copy(old_name, current_directory + "/" + new_name)
 
 
-def upload_config_file(ip, uname):
+def upload_config_file(ip, uname, private_key_path, private_key_pass):
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
     path_to_file = '/home/' + uname + '/.ssh'
@@ -119,24 +131,29 @@ def upload_config_file(ip, uname):
     sftp.close()
 
 
-def sync_config_with_hosts(hosts):
+def sync_config_with_hosts(hosts, private_key_path, private_key_pass):
     for host in hosts:
-        upload_config_file(host[0], host[1])
+        upload_config_file(host[0], host[1], private_key_path, private_key_pass)
 
 
 def main():
+    #private_key = private_key_credentials()
+    private_key = []
+    private_key[0] = '/home/mmd/.ssh/id_rsa'
+    private_key[1] = 'Mmd.123!'
     main_storm_list = store_file('storm_list_main')
     hosts, config = [], []
     hosts = read_hosts_file()
     for host in hosts:
-        get_config_file(host[0], host[1])
+        get_config_file(host[0], host[1], private_key[0], private_key[1])
         config = store_file('config')
         config.reverse()
         main_storm_list = get_unique_instances(config, main_storm_list)
     sync_main_storm_file(main_storm_list)
     create_uploadable_file()
-    sync_config_with_hosts(hosts)
+    #sync_config_with_hosts(hosts, private_key[0], private_key[1])
 
 
 if __name__ == '__main__':
     main()
+
