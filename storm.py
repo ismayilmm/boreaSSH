@@ -1,5 +1,8 @@
 import main
 import helper
+import connection
+import host_file_operations as host_op
+
 
 class StormHostDataclass:
     def __init__(self, host, hostname, user, port):
@@ -53,10 +56,11 @@ def sync_main_storm_file(main_storm_list, file='storm_list_main'):
 def sync(private_key):
     main_storm_list = store_file('storm_list_main')
     hosts, config = [], []
-    hosts = helper.read_hosts_file()
-
+    hosts = host_op.read_file()
+    file = ['config']
     for host in hosts:
-        helper.get_file(host[0], host[1], private_key[0], private_key[1], 'config')
+        connection.sftp_operation(host[0], host[1], private_key[0], private_key[1], file, connection.sftp_get)
+        #helper.get_file(host[0], host[1], private_key[0], private_key[1], 'config')
         config = store_file('config')
         config.reverse()
         main_storm_list = get_unique_instances_of_config_file(config, main_storm_list)
