@@ -1,7 +1,7 @@
-import os
-import pysftp
-import shutil
 import argparse
+import authorized_keys
+import storm
+import helper
 
 
 def private_key_credentials():
@@ -17,171 +17,12 @@ def private_key_credentials():
     return private_key_path, private_key_pass
 
 
-class StormHostDataclass:
-    def __init__(self, host, hostname, user, port):
-        self.host = host
-        self.hostname = hostname
-        self.user = user
-        self.port = port
-
-    def to_string(self):
-        return self.host + self.hostname + self.user + self.port
-
-
-def store_file(conf_file='config'):
-    config = []
-    host, hostname, user, port = '', '', '', ''
-    config_file = read_lines(conf_file)
-    for i, line in enumerate(config_file):
-        if 'Host' in line:
-            host = line
-        elif 'hostname' in line:
-            hostname = line
-        elif 'user' in line:
-            user = line
-        elif 'port' in line:
-            port = line
-            config.append(StormHostDataclass(host, hostname, user, port))
-    return config
-
-
-def read_hosts_file(file='hosts'):
-    return get_host_credentials(read_lines(file))
-
-
-def get_host_credentials(host_file):
-    hosts = []
-    for i, line in enumerate(host_file):
-        split_by_space = line.split(' ')
-        uname = format_string(split_by_space[1])
-        hosts.append((split_by_space[0], uname))
-    return hosts
-
-
-def format_string(string):
-    size = len(string)
-    mod_string = string[:size - 1]
-    return mod_string
-
-
-def read_lines(file='storm_list_main'):
-    with open(file) as file_lines:
-        all_lines = file_lines.readlines()
-    for line in all_lines:
-        if line == '\n':
-            all_lines.remove(line)
-    return all_lines
-
-
-def write_to_file(to_write, file='storm_list_main'):
-    main_file = open(file, 'w')
-    for line in to_write:
-        main_file.write(line)
-    main_file.close()
-
-
-def get_config_file(hostname, username, private_key_path, private_key_pass):
-    cnopts = pysftp.CnOpts()
-    cnopts.hostkeys = None
-    path_to_file = '/home/' + username + '/.ssh'
-    port_no = 22
-    if username == 'ural':
-        port_no = 9669
-    with pysftp.Connection(hostname, username=username, private_key=private_key_path, private_key_pass=private_key_pass, port=port_no, cnopts=cnopts) as sftp:
-        with sftp.cd(path_to_file):
-            sftp.get('config')
-            sftp.get('authorized_keys')
-    sftp.close()
-
-
-def get_unique_instances_of_config_file(config, main_storm_list):
-    for line in config:
-        if hostname_in_file(line.hostname, line.port, main_storm_list) is False:
-            main_storm_list.append(line)
-    return main_storm_list
-
-
-def hostname_in_file(auth_key_host, auth_key_port, main_file):
-    for line in main_file:
-        if line.hostname == auth_key_host and line.port == auth_key_port:
-            return True
-    return False
-
-
-def get_unique_instances_of_authorized_keys(main_file, auth_file='authorized_keys'):
-    auth_keys = read_lines(auth_file)
-    for line in auth_keys:
-        if line_in_file(line, main_file) is False:
-            main_file.append(line)
-    return main_file
-
-
-def line_in_file(auth_key_line, main_file):
-    check = False
-    ssh_key = auth_key_line.split(' ')[1]
-    for line in main_file:
-        if line.split(' ')[1] == ssh_key:
-            check = True
-    return check
-
-
-def sync_main_storm_file(main_storm_list, file='storm_list_main'):
-    config = ''
-    for host in main_storm_list:
-        config += host.to_string()
-    write_to_file(config, file)
-
-
-def sync_main_file_for_keys(main_auth_keys_file):
-    write_to_file(main_auth_keys_file, 'main_file_for_keys')
-
-
-def create_uploadable_file(old_name='storm_list_main', new_name='config'):
-    current_directory = os.getcwd()
-    shutil.copy(old_name, current_directory + "/" + new_name)
-
-
-def upload_config_file(ip, uname, private_key_path, private_key_pass):
-    cnopts = pysftp.CnOpts()
-    cnopts.hostkeys = None
-    path_to_file = '/home/' + uname + '/.ssh'
-    port_no = 22
-    if uname == 'ural':
-        port_no = 9669
-    with pysftp.Connection(host=ip, username=uname, private_key=private_key_path, private_key_pass=private_key_pass, port=port_no, cnopts=cnopts) as sftp:
-        with sftp.cd(path_to_file):
-            sftp.put('config')
-            sftp.put('authorized_keys')
-    sftp.close()
-
-
-def sync_files_with_hosts(hosts, private_key_path, private_key_pass):
-    for host in hosts:
-        upload_config_file(host[0], host[1], private_key_path, private_key_pass)
-
-
 def main():
     #private_key = private_key_credentials()
     private_key = ['/home/mmd/.ssh/id_rsa', 'Mmd.123!']
-    main_auth_keys_file = read_lines('main_file_for_keys')
-    main_storm_list = store_file('storm_list_main')
-    hosts, config = [], []
-    hosts = read_hosts_file()
-
-    for host in hosts:
-        get_config_file(host[0], host[1], private_key[0], private_key[1])
-        config = store_file('config')
-        config.reverse()
-        main_storm_list = get_unique_instances_of_config_file(config, main_storm_list)
-
-        main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
-
-    sync_main_storm_file(main_storm_list)
-    sync_main_file_for_keys(main_auth_keys_file)
-
-    create_uploadable_file('storm_list_main', 'config')
-    create_uploadable_file('main_file_for_keys', 'authorized_keys')
-    #sync_files_with_hosts(hosts, private_key[0], private_key[1])
+    authorized_keys.sync(private_key)
+    storm.sync(private_key)
+    helper.sync_files_with_hosts(private_key[0], private_key[1])
 
 
 if __name__ == '__main__':
