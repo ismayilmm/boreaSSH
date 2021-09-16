@@ -1,4 +1,11 @@
 import helper
+from dataclasses import dataclass
+
+
+@dataclass
+class Host:
+    ip: str
+    username: str
 
 
 def read_file(file='hosts'):
@@ -10,7 +17,7 @@ def get_host_credentials(host_file):
     for i, line in enumerate(host_file):
         split_by_space = line.split(' ')
         uname = format_string(split_by_space[1])
-        hosts.append((split_by_space[0], uname))
+        hosts.append(Host(split_by_space[0], uname))
     return hosts
 
 

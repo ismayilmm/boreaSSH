@@ -14,9 +14,9 @@ def connection_options():
     return cnopts
 
 
-def sftp_operation(ip, username, private_key_path, private_key_pass, files, sftp_function):
-    with pysftp.Connection(host=ip, username=username, private_key=private_key_path,
-                           private_key_pass=private_key_pass, port=port_no(username),
+def sftp_operation(ip, username, private_key, files, sftp_function):
+    with pysftp.Connection(host=ip, username=username, private_key=private_key.path,
+                           private_key_pass=private_key.pass_phrase, port=port_no(username),
                            cnopts=connection_options()) as sftp:
         with sftp.cd('/home/' + username + '/.ssh'):
             for file in files:

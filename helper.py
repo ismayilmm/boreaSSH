@@ -30,9 +30,9 @@ def create_uploadable_file(old_name='storm_list_main', new_name='config'):
     shutil.copy(old_name, current_directory + "/" + new_name)
 
 
-def sync_files_with_hosts(private_key_path, private_key_pass):
+def sync_files_with_hosts(private_key):
     hosts = host_file_operations.read_file()
     files = ['authorized_keys', 'config']
     for host in hosts:
-        connection.sftp_operation(host[0], host[1], private_key_path, private_key_pass, files, connection.sftp_put)
+        connection.sftp_operation(host.ip, host.username, private_key, files, connection.sftp_put)
     #sftp_operation('192.168.16.172', 'mmd', private_key_path, private_key_pass, files, sftp_put)
