@@ -9,7 +9,7 @@ import getpass
 
 
 @dataclass
-class NewUser:
+class NewHost:
     ip: str
     username: str
     password: str
@@ -18,12 +18,12 @@ class NewUser:
 
 
 def get_new_user_credentials():
-    ip = input('Please enter ip of the new user: ')
-    username = input('Please enter username of the new user: ')
-    password = getpass.getpass('Please enter password of the new user: ')
-    alias = input('Please enter alias of the new user: ')
-    port = input('Please enter the port number of the new user: ')
-    return NewUser(ip, username, password, alias, port)
+    ip = input('Please enter ip of the new host: ')
+    username = input('Please enter username of the new host: ')
+    password = getpass.getpass('Please enter password of the new host: ')
+    alias = input('Please enter alias of the new host: ')
+    port = input('Please enter the port number of the new host: ')
+    return NewHost(ip, username, password, alias, port)
 
 
 def add_user():
