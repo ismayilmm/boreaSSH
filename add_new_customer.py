@@ -9,7 +9,7 @@ import getpass
 
 
 @dataclass
-class NewHost:
+class NewUser:
     ip: str
     username: str
     password: str
@@ -18,12 +18,12 @@ class NewHost:
 
 
 def get_new_user_credentials():
-    ip = input('Please enter ip of the new host: ')
-    username = input('Please enter username of the new host: ')
-    password = getpass.getpass('Please enter password of the new host: ')
-    alias = input('Please enter alias of the new host: ')
-    port = input('Please enter the port number of the new host: ')
-    return NewHost(ip, username, password, alias, port)
+    ip = input('Please enter ip of the new user: ')
+    username = input('Please enter username of the new user: ')
+    password = getpass.getpass('Please enter password of the new user: ')
+    alias = input('Please enter alias of the new user: ')
+    port = input('Please enter the port number of the new user: ')
+    return NewUser(ip, username, password, alias, port)
 
 
 def add_user():
@@ -34,6 +34,7 @@ def add_user():
     helper.sync_files_with_hosts(private_key)
     new_user = get_new_user_credentials()
     connection.sftp_password_operation(new_user.ip, new_user.username, new_user.password)
+    host_file_operations.add_new_host(new_user.ip, new_user.username)
     storm.add_new_host(new_user.alias, new_user.ip, new_user.username, new_user.port)
     authorized_keys.sync(private_key)
     storm.sync(private_key)
