@@ -34,7 +34,6 @@ def add_customer():
     helper.sync_files_with_hosts(private_key)
     new_user = get_new_user_credentials()
     connection.sftp_password_operation(new_user.ip, new_user.username, new_user.password)
-    storm.add_new_host(new_user.alias, new_user.ip, new_user.username, new_user.port)
     authorized_keys.sync(private_key)
     storm.sync(private_key)
     helper.sync_files_with_hosts(private_key)
