@@ -14,7 +14,8 @@ class AuthorizedKey:
     ssh_user: str
 
     def to_string(self):
-        return self.ssh_definer + self.ssh_key + self.ssh_user
+        string = self.ssh_definer + ' ' + self.ssh_key + ' ' + self.ssh_user
+        return string
 
 
 def store_authorized_keys_file(file='authorized_keys'):
@@ -58,9 +59,9 @@ def sync(private_key):
     hosts = []
     hosts = host_op.read_file()
     file = ['authorized_keys']
-    for host in hosts:
-        connection.sftp_operation(host.ip, host.username, private_key, file, sftp_get)
-        main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
+    #for host in hosts:
+        #connection.sftp_operation(host.ip, host.username, private_key, file, sftp_get)
+        #main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
 
     sync_main_file_for_keys(main_auth_keys_file)
     helper.create_uploadable_file('main_file_for_keys', 'authorized_keys')

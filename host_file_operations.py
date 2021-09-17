@@ -27,3 +27,12 @@ def format_string(string):
         size = len(string)
         mod_string = string[:size - 1]
     return mod_string
+
+
+def add_new_host(ip, username):
+    main_file = open('hosts', 'a')
+    main_file.write('\n')
+    user = ip + ' ' + username
+    main_file = open('hosts', 'a')
+    main_file.write(user)
+    main_file.close()
