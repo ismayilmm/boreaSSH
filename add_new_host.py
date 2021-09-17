@@ -9,7 +9,7 @@ import getpass
 
 
 @dataclass
-class NewCustomer:
+class NewHost:
     ip: str
     username: str
     password: str
@@ -18,15 +18,15 @@ class NewCustomer:
 
 
 def get_new_user_credentials():
-    ip = input('Please enter ip of the new customer: ')
-    username = input('Please enter username of the new customer: ')
-    password = getpass.getpass('Please enter password of the new customer: ')
-    alias = input('Please enter alias of the new customer: ')
-    port = input('Please enter the port number of the new customer: ')
-    return NewCustomer(ip, username, password, alias, port)
+    ip = input('Please enter ip of the new host: ')
+    username = input('Please enter username of the new host: ')
+    password = getpass.getpass('Please enter password of the new host: ')
+    alias = input('Please enter alias of the new host: ')
+    port = input('Please enter the port number of the new host: ')
+    return NewHost(ip, username, password, alias, port)
 
 
-def add_user():
+def add_host():
     #private_key = ('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
     private_key = main.private_key_credentials()
     authorized_keys.sync(private_key)
@@ -41,4 +41,4 @@ def add_user():
 
 
 if __name__ == '__main__':
-    add_user()
+    add_host()
