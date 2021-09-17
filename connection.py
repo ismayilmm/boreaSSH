@@ -25,7 +25,7 @@ def sftp_operation(ip, username, private_key, files, sftp_function):
 
 
 def sftp_password_operation(ip, username, password):
-    with pysftp.Connection(host=ip, username=username, password=password) as sftp:
+    with pysftp.Connection(host=ip, username=username, password=password, cnopts=connection_options()) as sftp:
         with sftp.cd('/home/' + username + '/.ssh'):
             sftp.put('authorized_keys')
     sftp.close()

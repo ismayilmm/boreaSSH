@@ -14,13 +14,11 @@ class AuthorizedKey:
     ssh_user: str
 
     def to_string(self):
-        string = self.ssh_definer + ' ' + self.ssh_key + ' ' + self.ssh_user
-        return string
+        return self.ssh_definer + ' ' + self.ssh_key + ' ' + self.ssh_user
 
 
 def store_authorized_keys_file(file='authorized_keys'):
     authorized_keys = []
-    ssh_definer, ssh_key, ssh_user = '', '', ''
     authorized_keys_file = helper.read_lines(file)
     for i, line in enumerate(authorized_keys_file):
         if 'ssh-rsa' in line:

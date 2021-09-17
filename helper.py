@@ -25,6 +25,13 @@ def write_to_file(to_write, file='storm_list_main'):
     main_file.close()
 
 
+def append_to_file(to_write, file='storm_list_main'):
+    main_file = open(file, 'a')
+    main_file.write('\n')
+    main_file.write(to_write)
+    main_file.close()
+
+
 def create_uploadable_file(old_name='storm_list_main', new_name='config'):
     current_directory = os.getcwd()
     shutil.copy(old_name, current_directory + "/" + new_name)
