@@ -874,7 +874,11 @@ Host sinavbul
     hostname 94.103.41.210
     user root
     port 22
-   port 22Host vt_urback
+Host sinavbul
+    hostname 94.103.41.210
+    user root
+   port 22
+Host vt_urback
     hostname 192.168.16.208
     user root
     port 8374
