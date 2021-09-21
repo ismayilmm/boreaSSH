@@ -419,7 +419,7 @@ Host ttb_centosvm
     user root
     port 35222
 Host vt_urback
-    hostname 192.168.16.208
+    hostname 192.168.16.210
     user root
     port 8374
 Host gezenbilir
@@ -858,7 +858,27 @@ Host sinavbul
     hostname 94.103.41.210
     user root
     port 22
-    port 22Host linuxsanal
+Host sinavbul
+    hostname 94.103.41.210
+    user root
+    port 22
+Host linuxsanal
     hostname 94.103.32.16
     user root
     port 22
+Host demonte_new
+    hostname 94.103.36.172
+    user root
+    port 22
+Host sinavbul
+    hostname 94.103.41.210
+    user root
+    port 22 
+Host vt_urback
+    hostname 192.168.16.208
+    user root
+    port 8374
+Host yusuf
+   hostname 192.168.16.165
+   user lirorc
+   port 22
