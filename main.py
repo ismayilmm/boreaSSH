@@ -15,11 +15,9 @@ class PrivateKey:
 def private_key_credentials():
     parser = argparse.ArgumentParser()
     private_key_path = '/home/' + getpass.getuser() + '/.ssh/id_rsa'
-    #parser.add_argument("private_key_path", type=str)
     parser.add_argument("private_key_pass", type=str)
     args = parser.parse_args()
-    private_key = PrivateKey(private_key_path, args.private_key_pass)
-    return private_key
+    return PrivateKey(private_key_path, args.private_key_pass)
 
 
 def sync_it_all_9000():
@@ -32,8 +30,3 @@ def sync_it_all_9000():
 
 if __name__ == '__main__':
     sync_it_all_9000()
-
-
-"""
-3. authorized keys dataclass
-"""
