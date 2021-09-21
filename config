@@ -874,9 +874,6 @@ Host sinavbul
     hostname 94.103.41.210
     user root
     port 22
-Host yusuf
-   hostname 192.168.16.165
-   user lirorc
    port 22Host vt_urback
     hostname 192.168.16.208
     user root
