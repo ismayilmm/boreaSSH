@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import authorized_keys
 import helper
 import main

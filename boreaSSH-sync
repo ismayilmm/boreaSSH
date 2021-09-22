@@ -26,7 +26,7 @@ def sync_it_all_9000():
     authorized_keys.sync(private_key)
     storm.sync(private_key)
     helper.sync_files_with_hosts(private_key)
-    print(1)
+    print("All files are successfully synced")
 if __name__ == '__main__':
     sync_it_all_9000()
 EOF
