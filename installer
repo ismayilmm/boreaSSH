@@ -1,0 +1,20 @@
+#!/bin/sh
+
+
+if ! command -v python > /dev/null; then
+   echo -e "Command python not found! Install? (y/n) \c"
+   read
+   if "$REPLY" = "y"; then
+      yay -S python
+   fi
+fi
+
+mkdir $HOME/.boreaSSH
+
+cat - << EOF >> $HOME/.zshrc
+PATH= $PATH:$HOME/.boreaSSH
+EOF
+
+cp -r * $HOME/.boreaSSH
+
+pip install pysftp
