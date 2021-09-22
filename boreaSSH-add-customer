@@ -19,6 +19,7 @@ class NewCustomer:
     alias: str
     port: str
 
+
 def get_new_user_credentials():
     ip = input('Please enter ip of the new customer: ')
     username = input('Please enter username of the new customer: ')
