@@ -12,7 +12,7 @@ fi
 mkdir $HOME/.boreaSSH
 
 cat - << EOF >> $HOME/.zshrc
-PATH= $PATH:$HOME/.boreaSSH
+PATH = \$PATH:$HOME/.boreaSSH
 EOF
 
 cp -r * $HOME/.boreaSSH
