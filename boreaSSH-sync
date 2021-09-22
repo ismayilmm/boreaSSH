@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pushd ~/bin
+pushd ~/.boreSSH
 
 python - << EOF
 import argparse
