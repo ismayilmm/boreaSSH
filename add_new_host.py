@@ -28,9 +28,8 @@ def get_new_user_credentials():
     return NewHost(ip, username, password, alias, port)
 
 
-def add_host():
+def add_host(private_key):
     #private_key = ('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
-    private_key = main.private_key_credentials()
     authorized_keys.sync(private_key)
     storm.sync(private_key)
     helper.sync_files_with_hosts(private_key)

@@ -21,8 +21,8 @@ def private_key_credentials():
     return PrivateKey(private_key_path, args.private_key_pass)
 
 
-def sync_it_all_9000():
-    private_key = private_key_credentials()
+def sync_it_all_9000(private_key):
+    #private_key = private_key_credentials()
     #private_key = PrivateKey('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
     authorized_keys.sync(private_key)
     storm.sync(private_key)

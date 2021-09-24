@@ -29,9 +29,9 @@ def get_new_user_credentials():
     return NewCustomer(ip, username, password, alias, port)
 
 
-def add_customer():
+def add_customer(private_key):
     #private_key = ('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
-    private_key = main.private_key_credentials()
+    #private_key = main.private_key_credentials()
     authorized_keys.sync(private_key)
     storm.sync(private_key)
     helper.sync_files_with_hosts(private_key)

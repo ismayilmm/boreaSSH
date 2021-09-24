@@ -886,3 +886,15 @@ Host sinavbul
     hostname 94.103.41.210
     user root
     port 22 
+Host cardano4climate
+    hostname 94.103.46.187
+    user root
+    port 22
+Host kobakus_test_crm
+    hostname 185.203.33.90
+    user root
+    port 2222
+Host tac87
+    hostname 94.103.46.35
+    user root
+    port 22
