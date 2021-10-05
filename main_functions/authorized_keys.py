@@ -1,9 +1,4 @@
-import main
-import helper
-import connection
-from connection import sftp_get
-from connection import sftp_put
-import host_file_operations as host_op
+from helper_functions import host_file_operations as host_op, helper
 from dataclasses import dataclass
 
 
@@ -17,7 +12,7 @@ class AuthorizedKey:
         return self.ssh_definer + ' ' + self.ssh_key + ' ' + self.ssh_user
 
 
-def store_authorized_keys_file(file='authorized_keys'):
+def store_authorized_keys_file(file='../files/authorized_keys'):
     authorized_keys = []
     authorized_keys_file = helper.read_lines(file)
     for i, line in enumerate(authorized_keys_file):
@@ -45,7 +40,7 @@ def line_in_file(ssh_key, main_file):
     return check
 
 
-def sync_main_file_for_keys(main_auth_keys_file, file='main_file_for_keys'):
+def sync_main_file_for_keys(main_auth_keys_file, file='../files/main_file_for_keys'):
     auth_keys = ''
     for key in main_auth_keys_file:
         auth_keys += key.to_string()
@@ -53,14 +48,14 @@ def sync_main_file_for_keys(main_auth_keys_file, file='main_file_for_keys'):
 
 
 def sync(private_key):
-    main_auth_keys_file = store_authorized_keys_file('main_file_for_keys')
+    main_auth_keys_file = store_authorized_keys_file('../files/main_file_for_keys')
     hosts = []
     hosts = host_op.read_file()
-    file = ['authorized_keys']
+    file = ['../files/authorized_keys']
     #for host in hosts:
         #connection.sftp_operation(host.ip, host.username, private_key, file, sftp_get)
         #main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
 
     sync_main_file_for_keys(main_auth_keys_file)
-    helper.create_uploadable_file('main_file_for_keys', 'authorized_keys')
+    helper.create_uploadable_file('../files/main_file_for_keys', '../files/authorized_keys')
 

@@ -1,4 +1,5 @@
 import pysftp
+import os
 
 
 def port_no(username):
@@ -7,7 +8,7 @@ def port_no(username):
 
 def connection_options():
     """
-    Note
+    Connection options function required for proper work of the pysftp package
     """
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
@@ -27,15 +28,18 @@ def sftp_operation(ip, username, private_key, files, sftp_function):
 def sftp_password_operation(ip, username, password):
     with pysftp.Connection(host=ip, username=username, password=password, cnopts=connection_options()) as sftp:
         with sftp.cd('/home/' + username + '/.ssh'):
-            sftp.put('authorized_keys')
+            sftp.put('../files/authorized_keys')
     sftp.close()
 
 
 def sftp_get(file, sftp, username):
     with sftp.cd('/home/' + username + '/.ssh'):
         sftp.get(file)
+        current = os.getcwd() + file
+        destination = '../files/' + file
+        os.rename(current, destination)
 
 
 def sftp_put(file, sftp, username):
     with sftp.cd('/home/' + username + '/.ssh'):
-        sftp.put(file)
+        sftp.put('../files/' + file)

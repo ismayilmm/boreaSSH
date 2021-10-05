@@ -1,7 +1,4 @@
-import main
-import helper
-import connection
-import host_file_operations as host_op
+from helper_functions import host_file_operations as host_op, helper, connection
 
 
 class StormHost:
@@ -21,10 +18,10 @@ def add_new_host(host, hostname, user, port):
     user = '   user ' + user + '\n'
     port = '   port ' + port
     new_host = host + hostname + user + port
-    helper.append_to_file(new_host, 'storm_list_main')
+    helper.append_to_file(new_host, '../files/storm_list_main')
 
 
-def store_config_file(conf_file='config'):
+def store_config_file(conf_file='../files/config'):
     config = []
     host, hostname, user, port = '', '', '', ''
     config_file = helper.read_lines(conf_file)
@@ -55,7 +52,7 @@ def hostname_in_file(auth_key_host, auth_key_port, main_file):
     return False
 
 
-def sync_main_storm_file(main_storm_list, file='storm_list_main'):
+def sync_main_storm_file(main_storm_list, file='../files/storm_list_main'):
     config = ''
     for host in main_storm_list:
         config += host.to_string()
@@ -63,13 +60,13 @@ def sync_main_storm_file(main_storm_list, file='storm_list_main'):
 
 
 def sync(private_key):
-    main_storm_list = store_config_file('storm_list_main')
+    main_storm_list = store_config_file('../files/storm_list_main')
     hosts, config = [], []
     hosts = host_op.read_file()
-    file = ['config']
+    file = ['../files/config']
     for host in hosts:
         connection.sftp_operation(host.ip, host.username, private_key, file, connection.sftp_get)
-        config = store_config_file('config')
+        config = store_config_file('../files/config')
         config.reverse()
         main_storm_list = get_unique_instances_of_config_file(config, main_storm_list)
     sync_main_storm_file(main_storm_list)

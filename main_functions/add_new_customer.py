@@ -2,11 +2,8 @@
 
 
 import authorized_keys
-import helper
-import main
+from helper_functions import helper, connection
 from dataclasses import dataclass
-import connection
-import host_file_operations
 import storm
 import getpass
 

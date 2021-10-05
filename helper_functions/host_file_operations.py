@@ -30,9 +30,9 @@ def format_string(string):
 
 
 def add_new_host(ip, username):
-    main_file = open('hosts', 'a')
+    main_file = open('../files/hosts', 'a')
     main_file.write('\n')
     user = ip + ' ' + username
-    main_file = open('hosts', 'a')
+    main_file = open('../files/hosts', 'a')
     main_file.write(user)
     main_file.close()

@@ -1,6 +1,4 @@
-import main
-import add_new_host
-import add_new_customer
+from main_functions import add_new_host, add_new_customer, main
 import argparse
 from dataclasses import dataclass
 import getpass
@@ -19,15 +17,16 @@ class Input:
     pass_phrase: str
 
 
-parser = argparse.ArgumentParser(description='BoreaSSH')
-private_key_path = '/home/' + getpass.getuser() + '/.ssh/id_rsa'
-parser.add_argument('--mode', default='sync', help='Working modes: sync, add_host, add_customer')
-parser.add_argument('ssh_passphrase', help='SSH passphrase for PK')
-args = parser.parse_args()
-user_input = Input(args.mode, private_key_path, args.ssh_passphrase)
+# parser = argparse.ArgumentParser(description='BoreaSSH')
+# private_key_path = '/home/' + getpass.getuser() + '/.ssh/id_rsa'
+# parser.add_argument('--mode', default='sync', help='Working modes: sync, add_host, add_customer')
+# parser.add_argument('ssh_passphrase', help='SSH passphrase for PK')
+# args = parser.parse_args()
+# user_input = Input(args.mode, private_key_path, args.ssh_passphrase)
+# private_key = PrivateKey(user_input.path, user_input.pass_phrase)
 
-
-private_key = PrivateKey(user_input.path, user_input.pass_phrase)
+user_input = Input('sync', '/home/mmd/.ssh/id_rsa', 'Mmd.123!')
+private_key = PrivateKey('home/mmd/.ssh/id_rsa', 'Mmd.123!')
 if user_input.mode == 'sync':
     main.sync_it_all_9000(private_key)
 elif user_input.mode == 'add_customer':
