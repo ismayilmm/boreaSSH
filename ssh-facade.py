@@ -1,7 +1,7 @@
 from main_functions import add_new_host, add_new_customer, main
 import argparse
 from dataclasses import dataclass
-import getpass
+from getpass import getpass
 
 
 @dataclass
@@ -24,9 +24,10 @@ class Input:
 # args = parser.parse_args()
 # user_input = Input(args.mode, private_key_path, args.ssh_passphrase)
 # private_key = PrivateKey(user_input.path, user_input.pass_phrase)
+# passphrase = getpass("Private Key Pass Phrase: ")
 
 user_input = Input('sync', '/home/mmd/.ssh/id_rsa', 'Mmd.123!')
-private_key = PrivateKey('home/mmd/.ssh/id_rsa', 'Mmd.123!')
+private_key = PrivateKey('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
 if user_input.mode == 'sync':
     main.sync_it_all_9000(private_key)
 elif user_input.mode == 'add_customer':

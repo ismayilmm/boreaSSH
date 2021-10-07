@@ -1,5 +1,7 @@
+import shutil
 import pysftp
 import os
+from helper_functions.ini_reader import get_full_path
 
 
 def port_no(username):
@@ -28,18 +30,19 @@ def sftp_operation(ip, username, private_key, files, sftp_function):
 def sftp_password_operation(ip, username, password):
     with pysftp.Connection(host=ip, username=username, password=password, cnopts=connection_options()) as sftp:
         with sftp.cd('/home/' + username + '/.ssh'):
-            sftp.put('../files/authorized_keys')
+            sftp.put(get_full_path('authorized_keys'))
     sftp.close()
 
 
 def sftp_get(file, sftp, username):
     with sftp.cd('/home/' + username + '/.ssh'):
         sftp.get(file)
-        current = os.getcwd() + file
-        destination = '../files/' + file
-        os.rename(current, destination)
+        current = os.getcwd() + '/' + file
+        destination = get_full_path('')
+        os.remove(get_full_path(file))
+        shutil.move(current, destination)
 
 
 def sftp_put(file, sftp, username):
-    with sftp.cd('/home/' + username + '/.ssh'):
-        sftp.put('../files/' + file)
+    with sftp.cd('/home/' + username + '/.ssh/'):
+        sftp.put(get_full_path(file))

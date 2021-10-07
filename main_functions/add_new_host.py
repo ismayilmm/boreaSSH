@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import authorized_keys
+from main_functions import authorized_keys
 from dataclasses import dataclass
 from helper_functions import host_file_operations, helper, connection
 import storm
