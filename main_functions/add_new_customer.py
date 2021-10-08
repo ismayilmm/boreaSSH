@@ -4,7 +4,7 @@
 from main_functions import authorized_keys
 from helper_functions import helper, connection
 from dataclasses import dataclass
-import storm
+from main_functions import storm
 import getpass
 
 
@@ -37,7 +37,3 @@ def add_customer(private_key):
     authorized_keys.sync(private_key)
     storm.sync(private_key)
     helper.sync_files_with_hosts(private_key)
-
-
-if __name__ == '__main__':
-    add_customer()

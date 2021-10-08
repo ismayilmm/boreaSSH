@@ -3,6 +3,7 @@ import shutil
 from helper_functions import host_file_operations
 from helper_functions import connection
 from helper_functions.ini_reader import get_full_path
+from helper_functions.connection import sftp_put
 
 
 def read_lines(file=get_full_path('storm_list_main')):
@@ -37,6 +38,5 @@ def create_uploadable_file(old_name='storm_list_main', new_name='config'):
 def sync_files_with_hosts(private_key):
     hosts = host_file_operations.read_file()
     for host in hosts:
-        connection.sftp_operation(host.ip, host.username, private_key, [get_full_path('authorized_keys'),
-                                                                        get_full_path('config')], connection.sftp_put)
+        connection.sftp_operation(host.ip, host.username, private_key, ['authorized_keys', 'config'], sftp_put)
     # sftp_operation('192.168.16.172', 'mmd', private_key_path, private_key_pass, files, sftp_put)

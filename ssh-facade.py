@@ -26,7 +26,7 @@ class Input:
 # private_key = PrivateKey(user_input.path, user_input.pass_phrase)
 # passphrase = getpass("Private Key Pass Phrase: ")
 
-user_input = Input('sync', '/home/mmd/.ssh/id_rsa', 'Mmd.123!')
+user_input = Input('add_host', '/home/mmd/.ssh/id_rsa', 'Mmd.123!')
 private_key = PrivateKey('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
 if user_input.mode == 'sync':
     main.sync_it_all_9000(private_key)
