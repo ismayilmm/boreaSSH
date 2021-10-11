@@ -21,12 +21,6 @@ def private_key_credentials():
 
 
 def sync_it_all_9000(private_key):
-    #private_key = private_key_credentials()
-    #private_key = PrivateKey('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
     authorized_keys.sync(private_key)
     storm.sync(private_key)
     helper.sync_files_with_hosts(private_key)
-
-
-if __name__ == '__main__':
-    sync_it_all_9000()
