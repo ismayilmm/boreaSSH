@@ -906,3 +906,7 @@ Host mmd
    hostname 192.168.16.172
    user mmd
    port 22
+   port 22Host mmd
+   hostname 192.168.16.172
+   user mmd
+   port 22

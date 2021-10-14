@@ -17,7 +17,19 @@ def connection_options():
     return cnopts
 
 
-def sftp_operation(ip, username, private_key, files, sftp_function):
+def sftp_operation(ip: str, username: str, private_key, files: list[str], sftp_function) -> None:
+    """
+
+    Args:
+        ip: str
+        username:
+        private_key:
+        files:
+        sftp_function:
+
+    Returns:
+
+    """
     try:
         with pysftp.Connection(host=ip, username=username, private_key=private_key.path,
                                private_key_pass=private_key.pass_phrase, port=port_no(username),
@@ -30,10 +42,10 @@ def sftp_operation(ip, username, private_key, files, sftp_function):
         print("Could not connect to host " + username + '@' + ip)
 
 
-def sftp_password_operation(ip, username, password):
+def sftp_password_operation(ip, username, password, file=get_full_path('authorized_keys')):
     with pysftp.Connection(host=ip, username=username, password=password, cnopts=connection_options()) as sftp:
         with sftp.cd('/home/' + username + '/.ssh'):
-            sftp.put(get_full_path('authorized_keys'))
+            sftp.put(file)
     sftp.close()
 
 

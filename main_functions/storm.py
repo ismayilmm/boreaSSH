@@ -13,13 +13,13 @@ class StormHost:
         return self.host + self.hostname + self.user + self.port
 
 
-def add_new_host(host, hostname, user, port):
+def add_new_host(host, hostname, user, port, file=get_full_path('storm_list_main')):
     host = 'Host ' + host + '\n'
     hostname = '   hostname ' + hostname + '\n'
     user = '   user ' + user + '\n'
     port = '   port ' + port
     new_host = host + hostname + user + port
-    helper.append_to_file(new_host, get_full_path('storm_list_main'))
+    helper.append_to_file(new_host, file)
 
 
 def store_config_file(conf_file=get_full_path('config')):

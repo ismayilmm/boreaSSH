@@ -10,3 +10,7 @@ def get_full_path(file: str):
 
 def get_test_path(file: str):
     return config['Paths']['test_file_dir'] + file
+
+
+def get_log_path(file: str):
+    return config['Paths']['log_file_dir'] + file

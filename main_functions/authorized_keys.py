@@ -3,14 +3,37 @@ from dataclasses import dataclass
 from helper_functions import connection
 from helper_functions.ini_reader import get_full_path
 from helper_functions.connection import sftp_get
+from helper_functions.ini_reader import get_log_path as path
+import logging
+
+logging.basicConfig(filename=path('boreaSSH.log'), filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 
 def sync(private_key):
-    main_auth_keys_file = read_authorized_keys_file(get_full_path('main_file_for_keys'))
-    hosts = host_file_operations.read_file()
+    logging.info('Starting authorized_key sync process...')
+    try:
+        logging.info('Reading main_file_for_keys...')
+        main_auth_keys_file = read_authorized_keys_file(get_full_path('main_file_for_keys'))
+    except Exception:
+        logging.error("Can't read main_file_for_keys. Please check the correct path from info.ini file ")
+        raise SystemExit
+
+    try:
+        logging.info('Reading hosts file...')
+        hosts = host_file_operations.read_file()
+    except:
+        logging.error("Can't read hosts file. Please check the correct path from info.ini file ")
+        raise SystemExit
+
     file = ['authorized_keys']
     for host in hosts:
-        connection.sftp_operation(host.ip, host.username, private_key, file, sftp_get)
+        try:
+            logging.info('Logging to host ' + host.username + '@' + host.ip + '.')
+            connection.sftp_operation(host.ip, host.username, private_key, file, sftp_get)
+        except Exception:
+            logging.error('Could not log to host ' + host.username + '@' + host.ip +
+                          '. Please check if public key of your computer exsists in authorized_keys file of ' +
+                          host.username + '@' + host.ip + '. If not, pleas use add_host mode.')
         main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
 
     sync_main_file_for_keys(main_auth_keys_file)
@@ -38,7 +61,7 @@ def read_authorized_keys_file(file=get_full_path('authorized_keys')):
     return authorized_keys
 
 
-def get_unique_instances_of_authorized_keys(main_file, auth_file='authorized_keys'):
+def get_unique_instances_of_authorized_keys(main_file, auth_file=get_full_path('authorized_keys')):
     auth_keys = read_authorized_keys_file()
     for line in auth_keys:
         if line_in_file(line.ssh_key, main_file) is False:
