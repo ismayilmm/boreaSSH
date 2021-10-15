@@ -1,5 +1,6 @@
-import helper
+from helper_functions import helper
 from dataclasses import dataclass
+from helper_functions.ini_reader import get_full_path
 
 
 @dataclass
@@ -8,7 +9,7 @@ class Host:
     username: str
 
 
-def read_file(file='hosts'):
+def read_file(file=get_full_path('hosts')):
     return get_host_credentials(helper.read_lines(file))
 
 
@@ -30,9 +31,9 @@ def format_string(string):
 
 
 def add_new_host(ip, username):
-    main_file = open('hosts', 'a')
+    main_file = open(get_full_path('hosts'), 'a')
     main_file.write('\n')
     user = ip + ' ' + username
-    main_file = open('hosts', 'a')
+    main_file = open(get_full_path('hosts'), 'a')
     main_file.write(user)
     main_file.close()

@@ -898,3 +898,15 @@ Host tac87
     hostname 94.103.46.35
     user root
     port 22
+Host mmd
+   hostname 192.168.16.172
+   user mmd
+   port 22
+Host mmd
+   hostname 192.168.16.172
+   user mmd
+   port 22
+   port 22Host mmd
+   hostname 192.168.16.172
+   user mmd
+   port 22

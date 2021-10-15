@@ -1,11 +1,9 @@
 #!/usr/bin/env python
-import authorized_keys
-import helper
-import main
+
+from main_functions import authorized_keys
 from dataclasses import dataclass
-import connection
-import host_file_operations
-import storm
+from helper_functions import host_file_operations, helper, connection
+from main_functions import storm
 import getpass
 
 
@@ -27,9 +25,8 @@ def get_new_user_credentials():
     return NewHost(ip, username, password, alias, port)
 
 
-def add_host():
+def add_host(private_key):
     #private_key = ('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
-    private_key = main.private_key_credentials()
     authorized_keys.sync(private_key)
     storm.sync(private_key)
     helper.sync_files_with_hosts(private_key)

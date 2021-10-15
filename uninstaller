@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -r $HOME/.boreaSSH
+test -e $HOME/.zshrc && sed -i '/boreaSSH/d' $HOME/.zshrc
+test -e $HOME/.bashrc && sed -i '/boreaSSH/d' $HOME/.bashrc
