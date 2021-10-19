@@ -13,6 +13,20 @@ class StormHost:
         return self.host + self.hostname + self.user + self.port
 
 
+def check_format(main_storm_list):
+    for line in main_storm_list:
+        if 'Host' in line:
+            pass
+        elif '   hostname' in line:
+            pass
+        elif '   user' in line:
+            pass
+        elif '   port' in line:
+            pass
+        else:
+            break
+
+
 def add_new_host(host, hostname, user, port, file=get_full_path('storm_list_main')):
     host = 'Host ' + host + '\n'
     hostname = '   hostname ' + hostname + '\n'
@@ -70,5 +84,9 @@ def sync(private_key):
         config = store_config_file(get_full_path('config'))
         config.reverse()
         main_storm_list = get_unique_instances_of_config_file(config, main_storm_list)
+    try:
+        check_format(main_storm_list)
+    except:
+        print("The format of uploadable config file is corrupted")
     sync_main_storm_file(main_storm_list)
     helper.create_uploadable_file('storm_list_main', 'config')

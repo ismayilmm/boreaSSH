@@ -35,7 +35,7 @@ def sync(private_key):
                           '. Please check if public key of your computer exsists in authorized_keys file of ' +
                           host.username + '@' + host.ip + '. If not, pleas use add_host mode.')
         main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
-
+    check_format(main_auth_keys_file)
     sync_main_file_for_keys(main_auth_keys_file)
     helper.create_uploadable_file('main_file_for_keys', 'authorized_keys')
 
@@ -83,3 +83,14 @@ def sync_main_file_for_keys(main_auth_keys_file, file=get_full_path('main_file_f
     helper.write_to_file(auth_keys, file)
 
 
+def check_format(main_auth_keys_file):
+    for key in main_auth_keys_file:
+        try:
+           if 'ssh-rsa' in key:
+               pass
+           else:
+               logging.error("Could not verify the format of authorized_keys file")
+        except Exception:
+            logging.error("Could not verify the format of authorized_keys file")
+            
+            

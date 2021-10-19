@@ -40,8 +40,8 @@ class Input:
 # private_key = PrivateKey(user_input.path, user_input.pass_phrase)
 
 
-user_input = Input('sync', '/home/mmd/.ssh/id_rsa', 'Mmd.123!')
-private_key = PrivateKey('/home/mmd/.ssh/id_rsa', 'Mmd.123!')
+user_input = Input('sync', '/Users/ismayilmammadli/.ssh/id_rsa', 'asdasd')
+private_key = PrivateKey('/Users/ismayilmammadli/.ssh/id_rsa', 'asdasd')
 
 
 if user_input.mode == 'sync':

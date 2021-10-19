@@ -30,6 +30,12 @@ def append_to_file(to_write, file=get_full_path('storm_list_main')):
     main_file.close()
 
 
+def clean_file(file):
+    to_clean = open(file, 'w')
+    to_clean.write('')
+    to_clean.close()
+
+
 def create_uploadable_file(old_name='storm_list_main', new_name='config'):
     current_directory = os.getcwd()
     shutil.copy(get_full_path(old_name), get_full_path(new_name))
@@ -40,3 +46,8 @@ def sync_files_with_hosts(private_key):
     for host in hosts:
         connection.sftp_operation(host.ip, host.username, private_key, ['authorized_keys', 'config'], sftp_put)
     # sftp_operation('192.168.16.172', 'mmd', private_key_path, private_key_pass, files, sftp_put)
+    clean_file(get_full_path('authorized_keys'))
+    clean_file(get_full_path('config'))
+    clean_file(get_full_path('main_file_for_keys'))
+    clean_file(get_full_path('storm_list_main'))
+
