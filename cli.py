@@ -15,7 +15,7 @@ def sync_operation():
     logging.info('Syncing config file...')
     storm.sync(private_key)
     logging.info('Syncing updated files with hosts...')
-    helper.sync_files_with_hosts(private_key)
+    #helper.sync_files_with_hosts(private_key)
 
 
 @dataclass

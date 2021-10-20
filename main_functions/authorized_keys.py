@@ -30,11 +30,11 @@ def sync(private_key):
         try:
             logging.info('Logging to host ' + host.username + '@' + host.ip + '.')
             connection.sftp_operation(host.ip, host.username, private_key, file, sftp_get)
+            main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
         except Exception:
             logging.error('Could not log to host ' + host.username + '@' + host.ip +
-                          '. Please check if public key of your computer exsists in authorized_keys file of ' +
+                          '. Please check if public key of your computer exists in authorized_keys file of ' +
                           host.username + '@' + host.ip + '. If not, pleas use add_host mode.')
-        main_auth_keys_file = get_unique_instances_of_authorized_keys(main_auth_keys_file)
     check_format(main_auth_keys_file)
     sync_main_file_for_keys(main_auth_keys_file)
     helper.create_uploadable_file('main_file_for_keys', 'authorized_keys')

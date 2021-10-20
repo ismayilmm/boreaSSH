@@ -1,0 +1,2 @@
+root - ERROR - Could not log to host engin@192.168.16.26. Please check if public key of your computer exists in authorized_keys file of engin@192.168.16.26. If not, pleas use add_host mode.
+root - ERROR - Could not log to host ural@192.168.16.128. Please check if public key of your computer exists in authorized_keys file of ural@192.168.16.128. If not, pleas use add_host mode.

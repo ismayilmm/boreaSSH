@@ -39,7 +39,7 @@ def sftp_operation(ip: str, username: str, private_key, files: list[str], sftp_f
                     sftp_function(file, sftp, username)
         sftp.close()
     except Exception:
-        print("Could not connect to host " + username + '@' + ip)
+       print("Could not connect to host " + username + '@' + ip)
 
 
 def sftp_password_operation(ip, username, password, file=get_full_path('authorized_keys')):
